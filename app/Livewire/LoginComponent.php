@@ -22,7 +22,10 @@ class LoginComponent extends Component
         ]);
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            return redirect()->to('/dashboard'); // Redirige al usuario a su panel de control
+            $user = Auth::user();
+            $_SESSION['user_id'] = $user->id;
+            $_SESSION['username'] = $user->name;
+            return redirect()->to('/dashboard');
         }
 
         $this->errorMessage = 'Credenciales inválidas. Por favor, inténtelo de nuevo.';

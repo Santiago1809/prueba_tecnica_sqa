@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+
 use App\Models\User;
 use Livewire\Component;
 
@@ -25,11 +26,16 @@ class RegisterComponent extends Component
             'password_confirmation' => 'required|same:password'
         ]);
 
-       User::create([
-        'name' =>$this->name,
-        'email' =>$this->email,
-        'password' =>bcrypt($this->password)
-       ]);
-       return redirect()->to('/dashboard');
+        User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => bcrypt($this->password)
+        ]);
+        $newUser = User::where('email', $this->email)->first();
+        $userId = $newUser->id;
+        $username = $newUser->name;
+        $_SESSION['user_id'] = $userId;
+        $_SESSION['username'] = $username;
+        return redirect()->to('/dashboard');
     }
 }
