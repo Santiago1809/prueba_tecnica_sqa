@@ -34,8 +34,7 @@ class RegisterComponent extends Component
         $newUser = User::where('email', $this->email)->first();
         $userId = $newUser->id;
         $username = $newUser->name;
-        $_SESSION['user_id'] = $userId;
-        $_SESSION['username'] = $username;
+        session((['user_id' => $userId, 'username' => $username, 'logged'=>true]));
         return redirect()->to('/dashboard');
     }
 }

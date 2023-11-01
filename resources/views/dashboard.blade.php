@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,5 +10,7 @@ session_start();
 </head>
 <body>
   @livewire('header-component')
+  @livewire('form-post-component')
+  @livewire('post-component')
 </body>
 </html>

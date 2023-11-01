@@ -23,8 +23,11 @@ class LoginComponent extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             $user = Auth::user();
-            $_SESSION['user_id'] = $user->id;
-            $_SESSION['username'] = $user->name;
+            $userId = $user->id;
+            $username = $user->name;
+
+            session(['user_id' => $userId, 'username' => $username, 'logged'=>false]);
+            session(['logged'=>true]);
             return redirect()->to('/dashboard');
         }
 
