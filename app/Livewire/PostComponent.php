@@ -8,6 +8,7 @@ use Livewire\Component;
 class PostComponent extends Component
 {
     public $posts;
+    public $content;
 
     public function render()
     {
@@ -22,5 +23,13 @@ class PostComponent extends Component
     public function closeModal()
     {
         return redirect()->to('/dashboard');
+    }
+    public function updatePost($postId)
+    {
+        Post::find($postId)->update([
+            'content' => $this->content
+        ]);
+        return redirect()->to('/dashboard');
+
     }
 }

@@ -12,6 +12,7 @@ class RegisterComponent extends Component
     public $email;
     public $password;
     public $password_confirmation;
+    public $errorMessage;
     public function render()
     {
 
@@ -20,21 +21,26 @@ class RegisterComponent extends Component
     public function register()
     {
         $this->validate([
-            'name' => 'required|string|min:3',
+            'name' => 'required|string|min:3|unique:user',
             'email' => 'required|email|unique:user',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password'
         ]);
+        
+        if ($this->hasError('name')) {
+            $this->errorMessage = "Nombre de usuario ya está en uso";
+        } else {
+            if ($user = User::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => bcrypt($this->password)
+            ])) {
 
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => bcrypt($this->password)
-        ]);
-        $newUser = User::where('email', $this->email)->first();
-        $userId = $newUser->id;
-        $username = $newUser->name;
-        session((['user_id' => $userId, 'username' => $username, 'logged'=>true]));
-        return redirect()->to('/dashboard');
+                $userId = $user->id;
+                $username = $user->name;
+                session(['user_id' => $userId, 'username' => $username, 'logged' => true]);
+                return redirect()->to('/dashboard');
+            }
+        }
     }
 }

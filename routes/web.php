@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,4 @@ Route::get('/dashboard', function () {
     }
 });
 
-Route::get('/logout', 'AuthController@logout')->name('logout');
+Route::get('/logout', [AuthController::class, 'logout']);
