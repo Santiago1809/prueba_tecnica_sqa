@@ -4,8 +4,14 @@
         <div class="card-body">
             <form wire:submit.prevent="post">
                 <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" wire:model="title">
+                    @error('title') <span class="text-danger">{{$message}}</span> @enderror
+                </div>
+                <div class="form-group">
                     <label for="content">Content:</label>
-                    <textarea wire:model="content" class="form-control" style="resize: none;" name="content" id="content" rows="5"></textarea>
+                    <input wire:model="content" class="form-control" style="resize: none;" name="content" id="content">
+                    @error('content') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Create post</button>
             </form>

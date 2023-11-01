@@ -14,7 +14,10 @@
 </head>
 <body>
   @livewire('header-component')
-  @livewire('form-post-component')
-  @livewire('post-component')
+  <div class="p-4">
+    <h1>Welcome to our blog!</h1>
+    <hr>
+    @livewire('category-component')
+  </div>
 </body>
 </html>

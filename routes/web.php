@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Livewire\PostComponent;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/posts/{category_id}', function(){
+    return view('posts');
+});

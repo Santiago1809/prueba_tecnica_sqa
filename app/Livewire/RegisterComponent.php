@@ -26,21 +26,18 @@ class RegisterComponent extends Component
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password'
         ]);
-        
-        if ($this->hasError('name')) {
-            $this->errorMessage = "Nombre de usuario ya está en uso";
-        } else {
-            if ($user = User::create([
-                'name' => $this->name,
-                'email' => $this->email,
-                'password' => bcrypt($this->password)
-            ])) {
 
-                $userId = $user->id;
-                $username = $user->name;
-                session(['user_id' => $userId, 'username' => $username, 'logged' => true]);
-                return redirect()->to('/dashboard');
-            }
+
+        if ($user = User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => bcrypt($this->password)
+        ])) {
+
+            $userId = $user->id;
+            $username = $user->name;
+            session(['user_id' => $userId, 'username' => $username, 'logged' => true]);
+            return redirect()->to('/dashboard');
         }
     }
 }

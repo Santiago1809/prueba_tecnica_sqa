@@ -13,6 +13,7 @@
                     @endif
                 </div>
                 <div class="card-body">
+                    <h4>{{$post->title}}</h4>
                     <p>{{$post->content}}</p>
                 </div>
             </div>
@@ -43,10 +44,15 @@
                     </div>
                     <div class="modal-body mb-2">
                         <form wire:submit.prevent="updatePost({{$post->id}})" class="mx-3">
-                            <p>Current content: {{$post->content}}</p>
+                            <p>Title: {{$post->title}}</p>
+                            <p>Content: {{$post->content}}</p>
+                            <div class="form-group">
+                                <label for="title">New title</label>
+                                <input type="text" wire:model="title" class="form-control" placeholder="New Title">
+                            </div>
                             <div class="form-group">
                                 <label for="content">New content</label>
-                                <input type="text" wire:model="content" class="form-control" placeholder="New post">
+                                <input type="text" wire:model="content" class="form-control" placeholder="New post" required>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Update</button>
                         </form>

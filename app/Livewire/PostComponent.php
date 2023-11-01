@@ -9,10 +9,17 @@ class PostComponent extends Component
 {
     public $posts;
     public $content;
+    public $currentURL;
+    public $urlParts;
+    public $pathSegments;
+    public $title;
 
     public function render()
     {
-        $this->posts = Post::with('user')->get();
+        $this->currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $this->urlParts = parse_url($this->currentURL);
+        $this->pathSegments = explode("/", $this->urlParts['path']);
+        $this->posts = Post::where('category_id', $this->pathSegments[2])->with('user')->get();
         return view('livewire.post-component');
     }
     public function deletePost($postId)
@@ -22,14 +29,23 @@ class PostComponent extends Component
     }
     public function closeModal()
     {
-        return redirect()->to('/dashboard');
+        return redirect()->to($this->currentURL);
     }
     public function updatePost($postId)
     {
-        Post::find($postId)->update([
-            'content' => $this->content
-        ]);
-        return redirect()->to('/dashboard');
+        $post = Post::find($postId);
+
+        if (!empty($this->title)) {
+            $post->update([
+                'content' => $this->content,
+                'title' => $this->title,
+            ]);
+        } else {
+            $post->update([
+                'content' => $this->content,
+            ]);
+        }
+        return redirect()->to($this->currentURL);
 
     }
 }

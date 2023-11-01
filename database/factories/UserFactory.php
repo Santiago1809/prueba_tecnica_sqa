@@ -12,7 +12,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid, // Use $this->faker->uuid to generate a UUID.
+            'id' => $this->faker->id, // Use $this->faker->uuid to generate a UUID.
             'name' => $this->faker->unique()->name,
             'email' => $this->faker->unique()->safeEmail,
             'password' => bcrypt('password'), // You can generate a hashed password using bcrypt.
