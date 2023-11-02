@@ -33,5 +33,3 @@ Route::get('/posts/{category_id}', function(){
         return redirect()->to('/');
     }
 });
-Route::post('/create', [AuthController::class, 'create']);
-Route::post('/update/{postId}', [AuthController::class, 'update']);

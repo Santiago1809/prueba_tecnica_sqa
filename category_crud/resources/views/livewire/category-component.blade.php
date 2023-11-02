@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <h1>Categories:</h1>
+    <h1> <i class="fa-solid fa-file"></i> Categories:</h1>
     <table class="table">
         <thead>
             <tr>
