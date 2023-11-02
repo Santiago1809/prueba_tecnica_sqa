@@ -6,7 +6,7 @@ Este repositorio hace entrega de la prueba técnnica de Laravel y Livewire para 
 
 Para ejecutar la aplicación, siga los siguientes pasos:
 
-1. Clone el repositorio: https://github.com/Santiago1809/prueba_tecnica_sqa.git <pre><code>git clone https://github.com/Santiago1809/prueba_tecnica_sqa.git</code></pre>
+1. Clone el repositorio: <pre><code>git clone https://github.com/Santiago1809/prueba_tecnica_sqa.git</code></pre>
 2. Cambie al directorio del proyecto: <pre><code>cd prueba_tecnica_sqa</code></pre>
 3. Installar las dependencias: <pre><code>composer install</code></pre>
 4. Migre las tablas de la base de datos: <pre><code>php artisan migrate</code></pre>
