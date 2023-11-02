@@ -16,16 +16,6 @@ class AuthController extends Controller
         return redirect()->to('/');
     }
 
-    public function create(Request $request)
-    {
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => session('user_id'),
-            'category_id' => $request->category
-        ]);
-        return redirect()->to("http://$_SERVER[HTTP_HOST]/posts/$request->category");
-    }
     public function update(int $postId, Request $request)
     {
         Post::where('id', $postId)->update([

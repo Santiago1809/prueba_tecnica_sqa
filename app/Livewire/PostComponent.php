@@ -31,7 +31,7 @@ class PostComponent extends Component
     {
         return redirect()->to($this->currentURL);
     }
-    public function updatePost($postId)
+    public function update($postId)
     {
         $post = Post::find($postId);
 
@@ -45,7 +45,7 @@ class PostComponent extends Component
                 'content' => $this->content,
             ]);
         }
-        return redirect()->to($this->currentURL);
+        $this->closeModal();
 
     }
 }

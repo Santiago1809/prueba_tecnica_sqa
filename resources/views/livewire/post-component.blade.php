@@ -49,21 +49,19 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body mb-2">
-                            <form action="/update/{{$post->id}}" class="mx-3" method="POST">
-                                @csrf
+                            <p>Content:</p>
+                            <p>Title: {{$post->title}}</p>
+                            <p>Content: {!! $post->content !!}</p>
+                            <form wire:submit.prevent="update({{$post->id}})">
                                 <div class="form-group">
                                     <label for="title">New title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="New Title" value="{{$post->title}}">
+                                    <input type="text" name="title" class="form-control" placeholder="New Title" wire:model="title" required>
+                                    @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="content">New content</label>
-                                    <textarea type="text" name="content" class="form-control" id="editorPost-{{$post->id}}"
-                                        placeholder="New post" required>{!! $post->content!!}</textarea>
-                                </div>
-                                <div class="form-group" style="display: none">
-                                    <label for="category">Category:</label>
-                                    <input type="number" value="{{ intval($pathSegments[2]) }}" id="category"
-                                        name="category" class="form-control">
+                                    <input type="text" name="content" class="form-control" id="editorPost-{{$post->id}}" placeholder="New post" wire:model="content" required/>
+                                    @error('content') <span class="text-danger">{{ $message }} </span> @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-3">Update</button>
                             </form>
@@ -71,18 +69,6 @@
                     </div>
                 </div>
             </div>
-            <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    ClassicEditor
-                        .create(document.querySelector('#editorPost-{{$post->id}}'), {
-                            removePlugins: ['MediaUpload'],
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
-                });
-            </script>
         @endforeach
     </section>
 </div>
