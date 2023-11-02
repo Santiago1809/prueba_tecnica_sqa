@@ -28,5 +28,9 @@ Route::get('/dashboard', function () {
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/posts/{category_id}', function(){
-    return view('posts');
+    if (Session::get('logged')) {
+        return view('posts');
+    } else {
+        return redirect()->to('/');
+    }
 });

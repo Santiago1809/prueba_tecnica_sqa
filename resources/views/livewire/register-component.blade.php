@@ -20,11 +20,13 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" wire:model="password">
+                            @error('password') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="password_confirmation">Confirm password</label>
                             <input type="password" class="form-control" id="password_confirmation" wire:model="password_confirmation">
+                            @error('password_confirmation') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-3">Sign up</button>
