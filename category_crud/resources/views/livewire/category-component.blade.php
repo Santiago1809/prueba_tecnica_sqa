@@ -11,7 +11,7 @@
         <tbody>
             @foreach($categories as $category)
             <tr>
-                <td>{{$category->id}}</td>
+                <td>{{ $loop->index + 1 }}</td>
                 <td>{{ucfirst($category->name)}}</td>
                 <td>
                     <div>

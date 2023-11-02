@@ -10,6 +10,7 @@
 </head>
 <body>
   @livewire('header-component')
+  @livewire('form-category-component')
   @livewire('category-component')
 </body>
 </html>
