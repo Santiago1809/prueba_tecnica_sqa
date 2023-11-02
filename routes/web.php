@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Livewire\PostComponent;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
